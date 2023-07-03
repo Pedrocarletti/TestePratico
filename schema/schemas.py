@@ -1,13 +1,13 @@
-def individual_serial(todo) -> dict:
+def individual_serial(usuario) -> dict:
     return {
-        "id": str(todo["_id"]),
-         "name": todo["name"],
-        "completed": todo["completed"]
+        "id": str(usuario["_id"]),
+         "name": usuario["name"],
+        "email": usuario["email"]
       
     }
 
-def list_serial(todos) -> list:
-    return [individual_serial(todo) for todo in todos]
+def list_serial(usuarios) -> list:
+    return [individual_serial(usuario) for usuario in usuarios]
 
 def admin_serial(adm) -> dict:
     return {

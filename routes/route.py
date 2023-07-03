@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from fastapi import FastAPI, File, UploadFile, Depends
 import uuid
-from models.todos import Todo, Admin, Skin
+from models.todos import Usuario, Admin, Skin
 from config.database import collection_name, collection_adm, collection_skin
 from schema.schemas import list_serial, list_adm, list_filedatas
 from bson import ObjectId
@@ -12,10 +12,14 @@ from fastapi import Form, HTTPException
 from logins.loginadm import verify_password, criar_token_jwt
 import functools
 from fastapi import Depends, FastAPI, HTTPException, status
+#Raridade ES = Edicao Selecionada, ED = Edicao Deluxe, EP = Edicao Premium, EU = Edicao Ultra, EX = Edicao Exclusiva
 rarity = {
-  "legendary": 2, 
-  "epic": 1, 
-  "rare": 0
+
+  "ES": 0, 
+  "ED": 1, 
+  "EP": 2,
+  "EU": 3,
+  "EX" : 4 
 }
 
 def compare(x, y):
@@ -23,24 +27,24 @@ def compare(x, y):
 
 router = APIRouter()
 
-@router.get("/todos")
-async def get_todos():
-    todos = list_serial(collection_name.find().sort("name"))
-    return todos
+@router.get("/usarios")
+async def get_usuarios():
+    usuario = list_serial(collection_name.find().sort("name"))
+    return usuario
 
 #post request metodo
-@router.post("/todos")
-async def post_todo(todo: Todo):
-    collection_name.insert_one(dict(todo))
+@router.post("/usuarios")
+async def post_usuarios(usuario: Usuario):
+    collection_name.insert_one(dict(usuario))
 
 #put request metodo
 @router.put("/{id}")
-async def put_todo(id:str, todo: Todo):
-    collection_name.find_one_and_update({"_id": ObjectId(id)}, {"$set": dict(todo)})
+async def put_usuarios(id:str, usuario: Usuario):
+    collection_name.find_one_and_update({"_id": ObjectId(id)}, {"$set": dict(usuario)})
 
 #delete request metodo
 @router.delete("/{id}")
-async def delete_todo(id:str):
+async def delete_usuarios(id:str):
     collection_name.delete_one({"_id": ObjectId(id)})
 
 
@@ -94,8 +98,8 @@ async def get_skin():
 
 
 #put request metodo
-@router.put("/image/{id}")
-async def put_image(id:str, rarity: str = "", name: str = "", value: int = 0):
+@router.put("/skin/{id}")
+async def put_skin(id:str, rarity: str = "", name: str = "", value: int = 0):
     file_data = collection_skin.find_one({"_id": ObjectId(id)})
     if file_data is None:
         return {"error": "File not found"}
@@ -104,8 +108,8 @@ async def put_image(id:str, rarity: str = "", name: str = "", value: int = 0):
 
 
 #delete request metodo
-@router.delete("/image/{id}")
-async def delete_image(id:str):
+@router.delete("/skin/{id}")
+async def delete_skin(id:str):
     file_data = collection_skin.find_one({"_id": ObjectId(id)})
     if file_data is None:
         return {"error": "File not found"}

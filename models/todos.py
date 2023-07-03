@@ -1,9 +1,9 @@
 from pydantic import BaseModel
 
-class Todo(BaseModel):
+class Usuario(BaseModel):
     name: str 
     password: str
-    completed: bool
+    email: str
 
 class Admin(BaseModel):
     username: str
