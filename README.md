@@ -13,5 +13,5 @@ O servidor estará escutando a porta 8000
 Para consultar a documentação da API, acesse http://127.0.0.1:8000/docs e para interomper a execução pressione «Ctrl»+«C».
 
 Em http://127.0.0.1:8000/docs é possivel acessar os usuarios/admin, fazendo cadastro, modificar e deletar
-Para fazer cadastro da skin é necessario um login/senha de um admin, na raridade é necessario usar ES = Edicao Selecionada, ED = Edicao Deluxe, EP = Edicao Premium, EU = Edicao Ultra, EX = Edicao Exclusiva, junto com seu valor, imagem e nome da skin.
+Para fazer cadastro da skin é necessario um login/senha de um admin, na raridade é necessario usar ES = Edicao Selecionada, ED = Edicao Deluxe, EP = Edicao Premium, EU = Edicao Ultra, EX = Edicao Exclusiva, junto com seu valor, imagem e nome da skin, é possivel ordenar as skins por raridate pelo Get Skin Rarity ou por valor pelo Get Skin Value .
 
