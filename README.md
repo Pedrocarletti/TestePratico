@@ -6,7 +6,7 @@ Para executar o servidor use:
 
 uvicorn main:app --reload
 
-Na pasta config no arquivo database.py contém a URL de conexão com o banco de dados.
+Na pasta "config" no arquivo "database.py" contém a URL de conexão com o banco de dados.
 
 O servidor estará escutando a porta 8000
 
