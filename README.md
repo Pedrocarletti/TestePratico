@@ -1,6 +1,6 @@
 Para download dos pacotes use:
 
-pip install Requirements.txt
+pip install requirements.txt
 
 Para executar o servidor use:
 
